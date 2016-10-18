@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.commodityFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml" >
+            <ui:define name="contenido" >
+                <h2>#{str.commodityFormHeader}</h2>
+                <p:fieldset legend="#{str.commodityLegendForm}" >
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <p:inputText placeholder="#{str.commodityNamePrompt}" 
+                                         value="#{mercanciaBean.mercancia.nombre}" ></p:inputText>
+                                         <p:inputText placeholder="#{str.quantityPrompt}" 
+                                         value="#{mercanciaBean.mercancia.cantidad}" ></p:inputText>
+                            <p:inputText placeholder="#{str.pricePrompt}" 
+                                         value="#{mercanciaBean.mercancia.precio}" ></p:inputText>
+
+                                         <p:selectOneMenu value="#{mercanciaBean.mercancia.catalogo.idCatalogo}" >
+                                             <f:selectItems value="#{mercanciaBean.catalogos}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.idCatalogo}" ></f:selectItems>
+                            </p:selectOneMenu>
+
+                        </h:panelGrid>
+
+                        <p:commandButton value="#{str.buttonSave}"  
+                                         action="#{mercanciaBean.guardar()}" ></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}"  
+                                         action="#{mercanciaBean.eliminar()}" ></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}"  
+                                         action="#{mercanciaBean.cancelar()}" ></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
